@@ -5,8 +5,12 @@ import 'package:nft_flutter_windows/LeftSide.dart';
 import 'package:nft_flutter_windows/RightSide.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  await dotenv.load(fileName: ".env");
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -16,16 +20,18 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   bool _switchValue = false;
   bool _isLoading = false;
-  String _imageurl = "https://picsum.photos/200";
-  String _plyurl = "https://picsum.photos/200";
+  String _imageurl = "https://picsum.photos/400";
+  String _plyurl = "https://picsum.photos/400";
   String _text = "apple";
+  String _tokenid = "0";
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("My App"),
+          title: Text("Meta Metopia NFT Generator"),
         ),
         body: Container(
           padding: EdgeInsets.all(20),
@@ -37,6 +43,12 @@ class _MyAppState extends State<MyApp> {
                 imageurl: _imageurl,
                 plyurl: _plyurl,
                 switchValue: _switchValue,
+                tokenid: _tokenid,
+                onTokenID: (tokenid) {
+                  setState(() {
+                    _tokenid = tokenid;
+                  });
+                },
                 onIsLoading: (isLoading) {
                   setState(() {
                     _isLoading = isLoading;
@@ -64,11 +76,13 @@ class _MyAppState extends State<MyApp> {
                 },
               ),
               RightSideWidget(
-                  switchValue: _switchValue,
-                  text: _text,
-                  isLoading: _isLoading,
-                  imageurl: _imageurl,
-                  plyurl: _plyurl)
+                switchValue: _switchValue,
+                text: _text,
+                isLoading: _isLoading,
+                imageurl: _imageurl,
+                plyurl: _plyurl,
+                tokenid: _tokenid,
+              )
             ],
           ),
         ),
