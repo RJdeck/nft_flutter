@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 typedef OnTextChange = void Function(String text);
 typedef OnSwitchValue = void Function(bool switchValue);
@@ -11,22 +10,21 @@ typedef OnPlyURL = void Function(String plyurl);
 typedef OnTokenID = void Function(String tokenid);
 
 class LeftSideWidget extends StatelessWidget {
-  const LeftSideWidget(
-      {super.key,
-      required bool switchValue,
-      required String text,
-      required bool isLoading,
-      required String imageurl,
-      required String plyurl,
-      required String tokenid,
-      required OnTextChange onTextChange,
-      required OnSwitchValue onSwitchValue,
-      required OnIsLoading onIsLoading,
-      required OnImageURL onImageURL,
-      required OnPlyURL onPlyURL,
-      required OnTokenID onTokenID,
-      })
-      : _text = text,
+  const LeftSideWidget({
+    super.key,
+    required bool switchValue,
+    required String text,
+    required bool isLoading,
+    required String imageurl,
+    required String plyurl,
+    required String tokenid,
+    required OnTextChange onTextChange,
+    required OnSwitchValue onSwitchValue,
+    required OnIsLoading onIsLoading,
+    required OnImageURL onImageURL,
+    required OnPlyURL onPlyURL,
+    required OnTokenID onTokenID,
+  })  : _text = text,
         _onTextChange = onTextChange,
         _switchValue = switchValue,
         _onSwitchValue = onSwitchValue,
@@ -38,7 +36,6 @@ class LeftSideWidget extends StatelessWidget {
         _onPlyURL = onPlyURL,
         _tokenid = tokenid,
         _onTokenID = onTokenID;
-
 
   final String _text;
   final bool _switchValue;
@@ -106,8 +103,8 @@ class LeftSideWidget extends StatelessWidget {
                   onPressed: () async {
                     _onIsLoading(true);
                     final tar_url = (_switchValue
-                        ? "https://text2nft.rj-deck.com/meta2d"
-                        : "https://text2nft.rj-deck.com/meta3d");
+                        ? "https://text2nft.rj-deck.com/meta3d"
+                        : "https://text2nft.rj-deck.com/meta2d");
 
                     final response = await http
                         .post(Uri.parse(tar_url),

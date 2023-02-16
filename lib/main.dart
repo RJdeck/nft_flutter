@@ -5,10 +5,8 @@ import 'package:nft_flutter_windows/LeftSide.dart';
 import 'package:nft_flutter_windows/RightSide.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
-  await dotenv.load(fileName: ".env");
   runApp(MyApp());
 }
 
@@ -24,7 +22,6 @@ class _MyAppState extends State<MyApp> {
   String _plyurl = "https://picsum.photos/400";
   String _text = "apple";
   String _tokenid = "0";
-
 
   @override
   Widget build(BuildContext context) {

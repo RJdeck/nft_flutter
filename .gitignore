@@ -9,6 +9,7 @@
 .history
 .svn/
 migrate_working_dir/
+.env
 
 # IntelliJ related
 *.iml
@@ -52,3 +53,6 @@ macos
 linux
 android
 ios
+Release
+Release.zip
+Release
